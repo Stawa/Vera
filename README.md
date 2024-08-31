@@ -88,6 +88,9 @@ The project is currently in the early stages of development, and the core functi
 | Error Handling            | ✅ Implemented |
 | Testing                   | ✅ Implemented |
 | Speech-to-Text Conversion | ❌ Not Started |
+| Voice Prompting           | ❌ Not Started |
+| Switching Languages       | ❌ Not Started |
+| Playing Music             | ❌ Not Started |
 | Documentation             | ❌ Not Started |
 
 ## 🤝 Contributing
