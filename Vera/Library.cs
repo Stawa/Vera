@@ -32,12 +32,11 @@ public class Gemini
     {
         this.apiKey = apiKey ?? throw new ArgumentNullException(nameof(apiKey));
         this.httpClient = httpClient ?? new HttpClient();
-        this.modelName = GetModelName(model);
+        modelName = GetModelName(model);
     }
 
-    private string GetModelName(GeminiModel model)
-    {
-        return model switch
+    private static string GetModelName(GeminiModel model) =>
+        model switch
         {
             GeminiModel.GeminiProVision => "gemini-pro-vision",
             GeminiModel.GeminiPro => "gemini-pro",
@@ -48,7 +47,6 @@ public class Gemini
             GeminiModel.Gemini15ProLatest => "gemini-1.5-pro-latest",
             _ => throw new ArgumentException("Invalid Gemini model specified", nameof(model)),
         };
-    }
 
     public async Task<string> FetchResponseAsync(string prompt)
     {
@@ -57,19 +55,22 @@ public class Gemini
             throw new ArgumentException("Prompt cannot be null or empty.", nameof(prompt));
         }
 
+        var requestBody = new
+        {
+            contents = new[] { new { parts = new[] { new { text = prompt } } } },
+        };
+        var content = new StringContent(
+            JsonSerializer.Serialize(requestBody),
+            Encoding.UTF8,
+            "application/json"
+        );
+
         try
         {
-            var requestBody = new
-            {
-                contents = new[] { new { parts = new[] { new { text = prompt } } } },
-            };
-            var content = new StringContent(
-                JsonSerializer.Serialize(requestBody),
-                Encoding.UTF8,
-                "application/json"
+            var response = await httpClient.PostAsync(
+                $"{ApiBaseUrl}{modelName}:generateContent?key={apiKey}",
+                content
             );
-
-            var response = await httpClient.PostAsync(GetApiUrl(), content);
             response.EnsureSuccessStatusCode();
 
             var responseBody = await response.Content.ReadAsStringAsync();
@@ -85,9 +86,7 @@ public class Gemini
         }
     }
 
-    private string GetApiUrl() => $"{ApiBaseUrl}{modelName}:generateContent?key={apiKey}";
-
-    private string ExtractTextFromResponse(string responseBody)
+    private static string ExtractTextFromResponse(string responseBody)
     {
         var result = JsonSerializer.Deserialize<JsonElement>(responseBody);
         return result
@@ -99,8 +98,5 @@ public class Gemini
     }
 }
 
-public class GeminiApiException : Exception
-{
-    public GeminiApiException(string message, Exception innerException)
-        : base(message, innerException) { }
-}
+public class GeminiApiException(string message, Exception innerException)
+    : Exception(message, innerException) { }
