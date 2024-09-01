@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using GTTS.Summarize;
+using Vera.Summarize;
 
 class Program
 {

@@ -1,4 +1,4 @@
-﻿namespace GTTS;
+﻿namespace Vera;
 
 using System;
 using System.Net.Http;

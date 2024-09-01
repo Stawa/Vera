@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace GTTS.Summarize
+namespace Vera.Summarize
 {
     public class DeepgramResponse
     {

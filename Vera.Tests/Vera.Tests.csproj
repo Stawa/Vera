@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GTTS\GTTS.csproj" />
+    <ProjectReference Include="..\Vera\Vera.csproj" />
   </ItemGroup>
 
   <ItemGroup>

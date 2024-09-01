@@ -1,44 +1,44 @@
-# 🎙️ GTTS (Google Text-to-Speech)
+# 🎙️ Vera
 
-GTTS is a.NET package that converts textual content to speech, utilizing Google AI (Gemini) for text generation and internet-based information retrieval.
+Vera is a .NET package that converts textual content to speech, utilizing Google AI (Gemini) for text generation and internet-based information retrieval.
 
 The original library was written in TypeScript ([GTTS](https://github.com/Stawa/GTTS)), and I'm now migrating the project to C# and .NET to make it faster and more efficient.
 
 ## 📦 Installation
 
-To install the GTTS package, you can use the NuGet package manager or install it directly from GitHub. Here are three methods:
+To install the Vera package, you can use the NuGet package manager or install it directly from GitHub. Here are three methods:
 
 1. Using the .NET CLI:
    Run the following command in your terminal:
 
    ```
-   dotnet add package GTTS
+   dotnet add package Vera
    ```
 
 2. Using the Package Manager Console in Visual Studio:
    Execute this command:
 
    ```
-   Install-Package GTTS
+   Install-Package Vera
    ```
 
 3. Installing from GitHub:
    You can also install the latest version directly from the GitHub repository:
 
    ```
-   dotnet add package GTTS --version 1.0.0 --source https://nuget.pkg.github.com/Stawa/index.json
+   dotnet add package Vera --version 1.0.0 --source https://nuget.pkg.github.com/Stawa/index.json
    ```
 
    Note: Replace '1.0.0' with the latest version number available on the GitHub repository.
 
-After installation, you can start using GTTS in your .NET projects by adding the appropriate using statements.
+After installation, you can start using Vera in your .NET projects by adding the appropriate using statements.
 
 ## 🚀 Usage
 
-Here's an example of using GTTS to generate a response from the Gemini API:
+Here's an example of using Vera to generate a response from the Gemini API:
 
 ```csharp
-using GTTS;
+using Vera;
 using System;
 using System.Threading.Tasks;
 
@@ -75,7 +75,7 @@ class Program
 }
 ```
 
-Explore the [examples](./examples) directory in this repository for more detailed examples and use cases. These examples highlight GTTS's various capabilities and applications.
+Explore the [examples](./examples) directory in this repository for more detailed examples and use cases. These examples highlight Vera's various capabilities and applications.
 
 ## 🚧 Project Status
 
@@ -93,9 +93,11 @@ The project is currently in the early stages of development, and the core functi
 | Playing Music             | ❌ Not Started |
 | Documentation             | ❌ Not Started |
 
+In the future, I plan to create Vera Visual as an expansion of the V.E.R.A project. This function displays text for voice input and output on a small LCD screen, improving the system's user interface and interaction possibilities. Vera Visual seeks for a more accessible and user-friendly experience by combining visual feedback with vocal interactions.
+
 ## 🤝 Contributing
 
-We welcome contributions to help improve GTTS! If you discover any issues, have suggestions for improvements, or wish to add new features, please consider the following:
+We welcome contributions to help improve Vera! If you discover any issues, have suggestions for improvements, or wish to add new features, please consider the following:
 
 1. **Issues**: If you discover an error or have a feature request, please open an issue in our GitHub repository. Please provide as much detail as possible so that we can better understand and handle the issue.
 
@@ -109,4 +111,8 @@ We welcome contributions to help improve GTTS! If you discover any issues, have 
 
 4. **Code Style**: When contributing code, please follow the existing code style and conventions used in the project.
 
-Your contributions help to improve GTTS for everyone. Thank you for your support!
+Your contributions help to improve Vera for everyone. Thank you for your support!
+
+## 📜 License
+
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for more details.

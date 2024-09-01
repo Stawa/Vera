@@ -1,10 +1,10 @@
 using System.Net;
 using System.Text.Json;
 using DotNetEnv;
-using GTTS;
-using GTTS.Summarize;
 using Moq;
 using Moq.Protected;
+using Vera;
+using Vera.Summarize;
 using Xunit.Abstractions;
 
 public class GeminiTests

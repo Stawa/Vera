@@ -4,7 +4,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace GTTS.Summarize
+namespace Vera.Summarize
 {
     public class SummarizeText
     {
