@@ -1,5 +1,8 @@
 # 🎙️ Vera
 
+![License](https://img.shields.io/github/license/Stawa/Vera?style=flat-square)
+![Build](https://img.shields.io/github/actions/workflow/status/Stawa/Vera/dotnet.yml?style=flat-square)
+
 Vera is a .NET package that converts textual content to speech, utilizing Google AI (Gemini) for text generation and internet-based information retrieval.
 
 The original library was written in TypeScript ([GTTS](https://github.com/Stawa/GTTS)), and I'm now migrating the project to C# and .NET to make it faster and more efficient.
