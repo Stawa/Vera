@@ -28,6 +28,10 @@ jobs:
         run: dotnet build --no-restore --configuration Release
 
       - name: Test
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          EDENAI_API_KEY: ${{ secrets.EDENAI_API_KEY }}
+          DEEPGRAM_API_KEY: ${{ secrets.DEEPGRAM_API_KEY }}
         run: dotnet test --no-build --verbosity normal --configuration Release --logger "trx;LogFileName=test_results.trx"
 
       - name: Publish Test Results
