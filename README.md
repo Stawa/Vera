@@ -2,6 +2,7 @@
 
 ![License](https://img.shields.io/github/license/Stawa/Vera?style=flat-square)
 ![Build](https://img.shields.io/github/actions/workflow/status/Stawa/Vera/dotnet.yml?style=flat-square)
+[![Documentation](https://img.shields.io/badge/documentation-available-green?style=flat-square)](https://vera-ai.my.id/docs/core/api)
 
 Vera is a .NET package that converts textual content to speech, utilizing Google AI (Gemini) for text generation and internet-based information retrieval.
 
@@ -90,11 +91,11 @@ The project is currently in the early stages of development, and the core functi
 | Text-to-Speech Conversion | ✅ Implemented |
 | Error Handling            | ✅ Implemented |
 | Testing                   | ✅ Implemented |
-| Speech-to-Text Conversion | ❌ Not Started |
+| Speech-to-Text Conversion | 🚧 On Progress |
 | Voice Prompting           | ❌ Not Started |
 | Switching Languages       | ❌ Not Started |
-| Playing Music             | ❌ Not Started |
-| Documentation             | ❌ Not Started |
+| Playing Music             | ✅ Implemented |
+| Documentation             | ✅ Implemented |
 
 In the future, I plan to create Vera Visual as an expansion of the V.E.R.A project. This function displays text for voice input and output on a small LCD screen, improving the system's user interface and interaction possibilities. Vera Visual seeks for a more accessible and user-friendly experience by combining visual feedback with vocal interactions.
 
