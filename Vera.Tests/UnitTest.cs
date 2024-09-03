@@ -3,7 +3,6 @@ using System.Text.Json;
 using DotNetEnv;
 using Moq;
 using Moq.Protected;
-using Vera;
 using Vera.Summarize;
 using Xunit.Abstractions;
 
@@ -75,8 +74,8 @@ namespace Vera.Tests
             var client = new HttpClient(_mockHttpMessageHandler.Object);
             var apiTokens = new Dictionary<string, string>
             {
-                { "Deepgram", "fake_deepgram_token" },
-                { "Edenai", "fake_edenai_token" },
+                { "Deepgram", "DEEPGRAM_API_KEY" },
+                { "Edenai", "EDENAI_API_KEY" },
             };
             _summarizeText = new SummarizeText(apiTokens, client, logger: false);
         }

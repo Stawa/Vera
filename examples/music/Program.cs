@@ -16,18 +16,47 @@ class Program
         Console.Write("Enter a song or artist to search for: ");
         string query = Console.ReadLine() ?? string.Empty;
 
-        var results = await youtubeMusic.Search(query);
+        var searchResult = await youtubeMusic.Search(query, 1);
 
-        if (results.Count == 0)
+        if (searchResult is VideoInfo singleVideo)
         {
-            Console.WriteLine("No results found.");
-            return;
+            await PlayVideo(singleVideo);
         }
+        else if (searchResult is List<VideoInfo> results)
+        {
+            if (results.Count == 0)
+            {
+                Console.WriteLine("No results found.");
+                return;
+            }
 
+            if (results.Count == 1)
+            {
+                await PlayVideo(results[0]);
+            }
+            else
+            {
+                await HandleMultipleResults(results);
+            }
+        }
+        else
+        {
+            Console.WriteLine("An error occurred during the search.");
+        }
+    }
+
+    private static async Task PlayVideo(VideoInfo video)
+    {
+        Console.WriteLine($"Playing: {video.Title} by {video.Artist}");
+        await YouTubeMusic.PlayAudioFromUrl(video.AudioStreamUrl);
+    }
+
+    private static async Task HandleMultipleResults(List<VideoInfo> results)
+    {
         Console.WriteLine("Search Results:");
         for (int i = 0; i < results.Count; i++)
         {
-            Console.WriteLine($"{i + 1}. {results[i].Title} - {results[i].Url}");
+            Console.WriteLine($"{i + 1}. {results[i].Title} by {results[i].Artist}");
         }
 
         Console.Write("Enter the number of the song you want to play: ");
@@ -37,8 +66,7 @@ class Program
             && choice <= results.Count
         )
         {
-            string url = results[choice - 1].Url;
-            await youtubeMusic.Play(url);
+            await PlayVideo(results[choice - 1]);
         }
         else
         {
