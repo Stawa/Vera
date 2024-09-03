@@ -1,2 +1,4 @@
-- href: ../index.md
-- href: ../change-log.md
+- name: 📖 Quick Start
+  href: ../index.md
+- name: 📜 Changelog
+  href: ../change-log.md
