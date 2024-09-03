@@ -1,0 +1,60 @@
+### YamlMime:ManagedReference
+items:
+- uid: Vera
+  commentId: N:Vera
+  id: Vera
+  children:
+  - Vera.Gemini
+  - Vera.Gemini.GeminiModel
+  - Vera.GeminiApiException
+  langs:
+  - csharp
+  - vb
+  name: Vera
+  nameWithType: Vera
+  fullName: Vera
+  type: Namespace
+  assemblies:
+  - Vera
+references:
+- uid: Vera.Gemini
+  commentId: T:Vera.Gemini
+  href: Vera.Gemini.html
+  name: Gemini
+  nameWithType: Gemini
+  fullName: Vera.Gemini
+- uid: Vera.Gemini.GeminiModel
+  commentId: T:Vera.Gemini.GeminiModel
+  parent: Vera
+  href: Vera.Gemini.html
+  name: Gemini.GeminiModel
+  nameWithType: Gemini.GeminiModel
+  fullName: Vera.Gemini.GeminiModel
+  spec.csharp:
+  - uid: Vera.Gemini
+    name: Gemini
+    href: Vera.Gemini.html
+  - name: .
+  - uid: Vera.Gemini.GeminiModel
+    name: GeminiModel
+    href: Vera.Gemini.GeminiModel.html
+  spec.vb:
+  - uid: Vera.Gemini
+    name: Gemini
+    href: Vera.Gemini.html
+  - name: .
+  - uid: Vera.Gemini.GeminiModel
+    name: GeminiModel
+    href: Vera.Gemini.GeminiModel.html
+- uid: Vera.GeminiApiException
+  commentId: T:Vera.GeminiApiException
+  href: Vera.GeminiApiException.html
+  name: GeminiApiException
+  nameWithType: GeminiApiException
+  fullName: Vera.GeminiApiException
+- uid: Vera
+  commentId: N:Vera
+  href: Vera.html
+  name: Vera
+  nameWithType: Vera
+  fullName: Vera

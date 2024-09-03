@@ -1,0 +1,165 @@
+### YamlMime:ManagedReference
+items:
+- uid: Vera.Voice.IVoiceRecognition
+  commentId: T:Vera.Voice.IVoiceRecognition
+  id: IVoiceRecognition
+  parent: Vera.Voice
+  children:
+  - Vera.Voice.IVoiceRecognition.RecognizeSpeech(System.Byte[])
+  langs:
+  - csharp
+  - vb
+  name: IVoiceRecognition
+  nameWithType: IVoiceRecognition
+  fullName: Vera.Voice.IVoiceRecognition
+  type: Interface
+  source:
+    remote:
+      path: Vera/voice/Library.cs
+      branch: main
+      repo: https://github.com/Stawa/Vera.git
+    id: IVoiceRecognition
+    path: ../Vera/voice/Library.cs
+    startLine: 4
+  assemblies:
+  - Vera
+  namespace: Vera.Voice
+  syntax:
+    content: 'public interface IVoiceRecognition : IDisposable'
+    content.vb: Public Interface IVoiceRecognition Inherits IDisposable
+  inheritedMembers:
+  - System.IDisposable.Dispose
+- uid: Vera.Voice.IVoiceRecognition.RecognizeSpeech(System.Byte[])
+  commentId: M:Vera.Voice.IVoiceRecognition.RecognizeSpeech(System.Byte[])
+  id: RecognizeSpeech(System.Byte[])
+  parent: Vera.Voice.IVoiceRecognition
+  langs:
+  - csharp
+  - vb
+  name: RecognizeSpeech(byte[])
+  nameWithType: IVoiceRecognition.RecognizeSpeech(byte[])
+  fullName: Vera.Voice.IVoiceRecognition.RecognizeSpeech(byte[])
+  type: Method
+  source:
+    remote:
+      path: Vera/voice/Library.cs
+      branch: main
+      repo: https://github.com/Stawa/Vera.git
+    id: RecognizeSpeech
+    path: ../Vera/voice/Library.cs
+    startLine: 6
+  assemblies:
+  - Vera
+  namespace: Vera.Voice
+  syntax:
+    content: string RecognizeSpeech(byte[] audioData)
+    parameters:
+    - id: audioData
+      type: System.Byte[]
+    return:
+      type: System.String
+    content.vb: Function RecognizeSpeech(audioData As Byte()) As String
+  overload: Vera.Voice.IVoiceRecognition.RecognizeSpeech*
+  nameWithType.vb: IVoiceRecognition.RecognizeSpeech(Byte())
+  fullName.vb: Vera.Voice.IVoiceRecognition.RecognizeSpeech(Byte())
+  name.vb: RecognizeSpeech(Byte())
+references:
+- uid: Vera.Voice
+  commentId: N:Vera.Voice
+  href: Vera.html
+  name: Vera.Voice
+  nameWithType: Vera.Voice
+  fullName: Vera.Voice
+  spec.csharp:
+  - uid: Vera
+    name: Vera
+    href: Vera.html
+  - name: .
+  - uid: Vera.Voice
+    name: Voice
+    href: Vera.Voice.html
+  spec.vb:
+  - uid: Vera
+    name: Vera
+    href: Vera.html
+  - name: .
+  - uid: Vera.Voice
+    name: Voice
+    href: Vera.Voice.html
+- uid: System.IDisposable.Dispose
+  commentId: M:System.IDisposable.Dispose
+  parent: System.IDisposable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  name: Dispose()
+  nameWithType: IDisposable.Dispose()
+  fullName: System.IDisposable.Dispose()
+  spec.csharp:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Vera.Voice.IVoiceRecognition.RecognizeSpeech*
+  commentId: Overload:Vera.Voice.IVoiceRecognition.RecognizeSpeech
+  href: Vera.Voice.IVoiceRecognition.html#Vera_Voice_IVoiceRecognition_RecognizeSpeech_System_Byte___
+  name: RecognizeSpeech
+  nameWithType: IVoiceRecognition.RecognizeSpeech
+  fullName: Vera.Voice.IVoiceRecognition.RecognizeSpeech
+- uid: System.Byte[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte[]
+  nameWithType: byte[]
+  fullName: byte[]
+  nameWithType.vb: Byte()
+  fullName.vb: Byte()
+  name.vb: Byte()
+  spec.csharp:
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: (
+  - name: )
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
