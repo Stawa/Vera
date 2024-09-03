@@ -1,0 +1,42 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "src": "../Vera",
+          "files": ["**/*.csproj"]
+        }
+      ],
+      "dest": "api"
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": ["**/*.{md,yml}"],
+        "exclude": ["_site/**", "obj/**"]
+      }
+    ],
+    "dest": "_site",
+    "template": ["default", "templates/singulinkfx"],
+    "postProcessors": [],
+    "markdownEngineName": "markdig",
+    "noLangKeyword": false,
+    "keepFileLink": false,
+    "cleanupCacheHistory": false,
+    "disableGitFeatures": false,
+    "globalMetadata": {
+      "_appName": "Vera",
+      "_appTitle": "Vera Documentation",
+      "_enableSearch": true,
+      "_enableNewTab": true,
+      "_disableContribution": true,
+      "_appFooter": "<strong>V.E.R.A Documentation</strong>",
+      "_copyrightFooter": "© 2024 V.E.R.A. All rights reserved.",
+      "_gitContribute": {
+        "repo": "https://github.com/Stawa/Vera",
+        "branch": "main"
+      }
+    }
+  }
+}

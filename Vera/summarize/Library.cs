@@ -3,6 +3,9 @@ using System.Text.Json;
 
 namespace Vera.Summarize
 {
+    /// <summary>
+    /// Provides functionality to summarize text using various API services.
+    /// </summary>
     public class SummarizeText
     {
         private readonly Dictionary<string, string> apiUrls;
@@ -10,6 +13,12 @@ namespace Vera.Summarize
         private readonly HttpClient httpClient;
         private readonly bool logger;
 
+        /// <summary>
+        /// Initializes a new instance of the SummarizeText class.
+        /// </summary>
+        /// <param name="apiTokens">A dictionary containing API tokens for different services.</param>
+        /// <param name="httpClient">The HttpClient instance to use for API requests.</param>
+        /// <param name="logger">A boolean indicating whether to enable logging.</param>
         public SummarizeText(
             Dictionary<string, string> apiTokens,
             HttpClient httpClient,
@@ -26,6 +35,12 @@ namespace Vera.Summarize
             };
         }
 
+        /// <summary>
+        /// Summarizes text using the Deepgram API.
+        /// </summary>
+        /// <param name="text">The text to summarize.</param>
+        /// <param name="languageCode">The language code of the text.</param>
+        /// <returns>A task that represents the asynchronous operation. The task result contains the summarized text.</returns>
         public async Task<string> DeepgramAsync(string text, string languageCode)
         {
             try
@@ -81,6 +96,11 @@ namespace Vera.Summarize
             }
         }
 
+        /// <summary>
+        /// Summarizes text using the Edenai API.
+        /// </summary>
+        /// <param name="components">The EdenaiComponents object containing the text and other parameters for summarization.</param>
+        /// <returns>A task that represents the asynchronous operation. The task result contains the EdenaiResponse with the summarized text and cost information.</returns>
         public async Task<EdenaiResponse> EdenaiAsync(EdenaiComponents components)
         {
             try
@@ -133,11 +153,20 @@ namespace Vera.Summarize
             }
         }
 
+        /// <summary>
+        /// Logs an error message for a specific provider.
+        /// </summary>
+        /// <param name="provider">The name of the provider where the error occurred.</param>
+        /// <param name="ex">The exception that was thrown.</param>
         private void LogError(string provider, Exception ex)
         {
             Log($"Error in {provider} summarization: {ex.Message}");
         }
 
+        /// <summary>
+        /// Logs a message if logging is enabled.
+        /// </summary>
+        /// <param name="info">The information to log.</param>
         private void Log(object info)
         {
             if (!logger)
