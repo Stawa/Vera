@@ -60,7 +60,7 @@ items:
       repo: https://github.com/Stawa/Vera.git
     id: .ctor
     path: ../Vera/music/Library.cs
-    startLine: 24
+    startLine: 26
   assemblies:
   - Vera
   namespace: Vera.Music
@@ -101,7 +101,7 @@ items:
       repo: https://github.com/Stawa/Vera.git
     id: Search
     path: ../Vera/music/Library.cs
-    startLine: 42
+    startLine: 44
   assemblies:
   - Vera
   namespace: Vera.Music
@@ -142,7 +142,7 @@ items:
       repo: https://github.com/Stawa/Vera.git
     id: Play
     path: ../Vera/music/Library.cs
-    startLine: 148
+    startLine: 120
   assemblies:
   - Vera
   namespace: Vera.Music
@@ -177,7 +177,7 @@ items:
       repo: https://github.com/Stawa/Vera.git
     id: PlayAudioFromUrl
     path: ../Vera/music/Library.cs
-    startLine: 192
+    startLine: 161
   assemblies:
   - Vera
   namespace: Vera.Music

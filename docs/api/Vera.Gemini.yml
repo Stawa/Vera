@@ -72,10 +72,10 @@ items:
       description: The API key for authenticating with the Gemini API.
     - id: model
       type: Vera.Gemini.GeminiModel
-      description: The Gemini model to use. Defaults to Gemini15FlashLatest.
+      description: The Gemini model to use. Defaults to <xref href="Vera.Gemini.GeminiModel.Gemini15FlashLatest" data-throw-if-not-resolved="false"></xref>.
     - id: httpClient
       type: System.Net.Http.HttpClient
-      description: An optional HttpClient instance. If not provided, a new one will be created.
+      description: An optional <xref href="System.Net.Http.HttpClient" data-throw-if-not-resolved="false"></xref> instance. If not provided, a new one will be created.
     content.vb: Public Sub New(apiKey As String, model As Gemini.GeminiModel = GeminiModel.Gemini15FlashLatest, httpClient As HttpClient = Nothing)
   overload: Vera.Gemini.#ctor*
   nameWithType.vb: Gemini.New(String, Gemini.GeminiModel, HttpClient)
@@ -127,6 +127,20 @@ items:
   fullName.vb: Vera.Gemini.FetchResponseAsync(String)
   name.vb: FetchResponseAsync(String)
 references:
+- uid: Vera.Gemini.GeminiModel.Gemini15FlashLatest
+  commentId: F:Vera.Gemini.GeminiModel.Gemini15FlashLatest
+  href: Vera.Gemini.GeminiModel.html#Vera_Gemini_GeminiModel_Gemini15FlashLatest
+  name: Gemini15FlashLatest
+  nameWithType: Gemini.GeminiModel.Gemini15FlashLatest
+  fullName: Vera.Gemini.GeminiModel.Gemini15FlashLatest
+- uid: System.Net.Http.HttpClient
+  commentId: T:System.Net.Http.HttpClient
+  parent: System.Net.Http
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.net.http.httpclient
+  name: HttpClient
+  nameWithType: HttpClient
+  fullName: System.Net.Http.HttpClient
 - uid: Vera
   commentId: N:Vera
   href: Vera.html
@@ -363,6 +377,43 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.object.tostring
   - name: (
   - name: )
+- uid: System.Net.Http
+  commentId: N:System.Net.Http
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Net.Http
+  nameWithType: System.Net.Http
+  fullName: System.Net.Http
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Net
+    name: Net
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net
+  - name: .
+  - uid: System.Net.Http
+    name: Http
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net.http
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Net
+    name: Net
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net
+  - name: .
+  - uid: System.Net.Http
+    name: Http
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net.http
 - uid: System
   commentId: N:System
   isExternal: true
@@ -413,51 +464,6 @@ references:
   - uid: Vera.Gemini.GeminiModel
     name: GeminiModel
     href: Vera.Gemini.GeminiModel.html
-- uid: System.Net.Http.HttpClient
-  commentId: T:System.Net.Http.HttpClient
-  parent: System.Net.Http
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.net.http.httpclient
-  name: HttpClient
-  nameWithType: HttpClient
-  fullName: System.Net.Http.HttpClient
-- uid: System.Net.Http
-  commentId: N:System.Net.Http
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System.Net.Http
-  nameWithType: System.Net.Http
-  fullName: System.Net.Http
-  spec.csharp:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Net
-    name: Net
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.net
-  - name: .
-  - uid: System.Net.Http
-    name: Http
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.net.http
-  spec.vb:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Net
-    name: Net
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.net
-  - name: .
-  - uid: System.Net.Http
-    name: Http
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.net.http
 - uid: System.ArgumentException
   commentId: T:System.ArgumentException
   isExternal: true

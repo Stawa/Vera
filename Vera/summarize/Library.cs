@@ -14,10 +14,10 @@ namespace Vera.Summarize
         private readonly bool logger;
 
         /// <summary>
-        /// Initializes a new instance of the SummarizeText class.
+        /// Initializes a new instance of the <see cref="SummarizeText"/> class.
         /// </summary>
         /// <param name="apiTokens">A dictionary containing API tokens for different services.</param>
-        /// <param name="httpClient">The HttpClient instance to use for API requests.</param>
+        /// <param name="httpClient">The <see cref="HttpClient"/> instance to use for API requests.</param>
         /// <param name="logger">A boolean indicating whether to enable logging.</param>
         public SummarizeText(
             Dictionary<string, string> apiTokens,
@@ -99,8 +99,8 @@ namespace Vera.Summarize
         /// <summary>
         /// Summarizes text using the Edenai API.
         /// </summary>
-        /// <param name="components">The EdenaiComponents object containing the text and other parameters for summarization.</param>
-        /// <returns>A task that represents the asynchronous operation. The task result contains the EdenaiResponse with the summarized text and cost information.</returns>
+        /// <param name="components">The <see cref="EdenaiComponents"/> object containing the text and other parameters for summarization.</param>
+        /// <returns>A task that represents the asynchronous operation. The task result contains the <see cref="EdenaiResponse"/> with the summarized text and cost information.</returns>
         public async Task<EdenaiResponse> EdenaiAsync(EdenaiComponents components)
         {
             try

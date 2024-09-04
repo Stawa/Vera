@@ -7,8 +7,8 @@ namespace Vera
     /// Represents a client for interacting with the Gemini API.
     /// </summary>
     /// <param name="apiKey">The API key for authenticating with the Gemini API.</param>
-    /// <param name="model">The Gemini model to use. Defaults to Gemini15FlashLatest.</param>
-    /// <param name="httpClient">An optional HttpClient instance. If not provided, a new one will be created.</param>
+    /// <param name="model">The Gemini model to use. Defaults to <see cref="Gemini.GeminiModel.Gemini15FlashLatest"/>.</param>
+    /// <param name="httpClient">An optional <see cref="HttpClient"/> instance. If not provided, a new one will be created.</param>
     public class Gemini(
         string apiKey,
         Gemini.GeminiModel model = Gemini.GeminiModel.Gemini15FlashLatest,
@@ -49,9 +49,9 @@ namespace Vera
         }
 
         /// <summary>
-        /// Gets the API model name corresponding to the specified GeminiModel enum value.
+        /// Gets the API model name corresponding to the specified <see cref="GeminiModel"/> enum value.
         /// </summary>
-        /// <param name="model">The GeminiModel enum value.</param>
+        /// <param name="model">The <see cref="GeminiModel"/> enum value.</param>
         /// <returns>The corresponding API model name.</returns>
         /// <exception cref="ArgumentException">Thrown when an invalid Gemini model is specified.</exception>
         private static string GetModelName(GeminiModel model) =>

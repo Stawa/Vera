@@ -24,12 +24,12 @@ items:
       repo: https://github.com/Stawa/Vera.git
     id: VideoInfo
     path: ../Vera/music/Library.cs
-    startLine: 360
+    startLine: 314
   assemblies:
   - Vera
   namespace: Vera.Music
   summary: Represents information about a YouTube video.
-  remarks: Initializes a new instance of the VideoInfo class.
+  remarks: Initializes a new instance of the <xref href="Vera.Music.VideoInfo" data-throw-if-not-resolved="false"></xref> class.
   example: []
   syntax:
     content: public class VideoInfo
@@ -62,12 +62,12 @@ items:
       repo: https://github.com/Stawa/Vera.git
     id: .ctor
     path: ../Vera/music/Library.cs
-    startLine: 360
+    startLine: 314
   assemblies:
   - Vera
   namespace: Vera.Music
   summary: Represents information about a YouTube video.
-  remarks: Initializes a new instance of the VideoInfo class.
+  remarks: Initializes a new instance of the <xref href="Vera.Music.VideoInfo" data-throw-if-not-resolved="false"></xref> class.
   example: []
   syntax:
     content: public VideoInfo(string title, string artist, string url, string audioStreamUrl)
@@ -107,7 +107,7 @@ items:
       repo: https://github.com/Stawa/Vera.git
     id: Title
     path: ../Vera/music/Library.cs
-    startLine: 368
+    startLine: 322
   assemblies:
   - Vera
   namespace: Vera.Music
@@ -139,7 +139,7 @@ items:
       repo: https://github.com/Stawa/Vera.git
     id: Artist
     path: ../Vera/music/Library.cs
-    startLine: 376
+    startLine: 330
   assemblies:
   - Vera
   namespace: Vera.Music
@@ -171,7 +171,7 @@ items:
       repo: https://github.com/Stawa/Vera.git
     id: Url
     path: ../Vera/music/Library.cs
-    startLine: 384
+    startLine: 338
   assemblies:
   - Vera
   namespace: Vera.Music
@@ -203,7 +203,7 @@ items:
       repo: https://github.com/Stawa/Vera.git
     id: AudioStreamUrl
     path: ../Vera/music/Library.cs
-    startLine: 392
+    startLine: 346
   assemblies:
   - Vera
   namespace: Vera.Music
@@ -218,6 +218,13 @@ items:
     content.vb: Public ReadOnly Property AudioStreamUrl As String
   overload: Vera.Music.VideoInfo.AudioStreamUrl*
 references:
+- uid: Vera.Music.VideoInfo
+  commentId: T:Vera.Music.VideoInfo
+  parent: Vera.Music
+  href: Vera.Music.VideoInfo.html
+  name: VideoInfo
+  nameWithType: VideoInfo
+  fullName: Vera.Music.VideoInfo
 - uid: Vera.Music
   commentId: N:Vera.Music
   href: Vera.html

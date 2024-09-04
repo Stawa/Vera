@@ -15,6 +15,8 @@ namespace Vera.Music
         private static VideoInfo? _selectedVideo;
         private static WaveOutEvent? _currentOutputDevice;
         private static float _currentVolume = 0.2f;
+        private static readonly Regex _youtubeUrlRegex =
+            new(@"^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$", RegexOptions.Compiled);
 
         /// <summary>
         /// Initializes a new instance of the YouTubeMusic class.
@@ -44,16 +46,9 @@ namespace Vera.Music
         {
             try
             {
-                if (IsYouTubeUrl(query))
-                {
-                    Console.WriteLine($"Searching for single video: {query}");
-                    return await SearchSingleVideo(query);
-                }
-                else
-                {
-                    Console.WriteLine($"Searching for '{query}' (max results: {maxResults})");
-                    return await SearchMultipleVideos(query, maxResults);
-                }
+                return IsYouTubeUrl(query)
+                    ? await SearchSingleVideo(query)
+                    : await SearchMultipleVideos(query, maxResults);
             }
             catch (Exception ex)
             {
@@ -66,77 +61,54 @@ namespace Vera.Music
         {
             var videoInfo = await GetVideoInfoFromUrl(query);
             _selectedVideo = videoInfo;
-            if (videoInfo != null)
-            {
-                Console.WriteLine($"Found video: {videoInfo.Title} by {videoInfo.Artist}");
-                return [videoInfo];
-            }
-            Console.WriteLine("No video found for the given URL.");
-            return [];
+            return videoInfo != null ? new List<VideoInfo> { videoInfo } : new List<VideoInfo>();
         }
 
         private async Task<List<VideoInfo>> SearchMultipleVideos(string query, int maxResults)
         {
-            var results = new List<VideoInfo>();
             var searchResult = await _youtubeDL.RunVideoDataFetch(
                 $"ytsearch{maxResults}:{query}",
                 CancellationToken.None
             );
 
-            if (searchResult.Success && searchResult.Data?.Entries != null)
-            {
-                Console.WriteLine($"Found {searchResult.Data.Entries.Length} initial results.");
-                foreach (var video in searchResult.Data.Entries)
-                {
-                    var fetchedVideo = await GetVideoInfoFromUrl(video.ID);
-                    if (fetchedVideo != null)
-                    {
-                        results.Add(fetchedVideo);
-                        Console.WriteLine($"- {fetchedVideo.Title} by {fetchedVideo.Artist}");
-                    }
-                }
-            }
-            Console.WriteLine($"Retrieved {results.Count} valid results for query: {query}");
-            return results;
+            if (!searchResult.Success || searchResult.Data?.Entries == null)
+                return new List<VideoInfo>();
+
+            var tasks = searchResult
+                .Data.Entries.Select(video => GetVideoInfoFromUrl(video.ID))
+                .ToList();
+
+            var results = await Task.WhenAll(tasks);
+            return results.Where(v => v != null).ToList()!;
         }
 
-        private static bool IsYouTubeUrl(string query)
-        {
-            string pattern = @"^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$";
-            return Regex.IsMatch(query, pattern);
-        }
+        private static bool IsYouTubeUrl(string query) => _youtubeUrlRegex.IsMatch(query);
 
         private async Task<VideoInfo?> GetVideoInfoFromUrl(string url)
         {
             try
             {
-                Console.WriteLine($"Fetching video info for: {url}");
                 var result = await _youtubeDL.RunVideoDataFetch(url);
 
-                if (result.Success && result.Data != null)
-                {
-                    var audioFormat = result
-                        .Data.Formats?.Where(f => f?.Resolution == "audio only")
-                        .LastOrDefault();
+                if (!result.Success || result.Data == null)
+                    return null;
 
-                    var videoInfo = new VideoInfo(
-                        result.Data.Title ?? "Unknown Title",
-                        result.Data.Uploader ?? "Unknown Uploader",
-                        url,
-                        audioFormat?.Url ?? string.Empty
-                    );
-                    Console.WriteLine(
-                        $"Video info retrieved: {videoInfo.Title} by {videoInfo.Artist}"
-                    );
-                    return videoInfo;
-                }
-                Console.WriteLine("Failed to fetch video info.");
+                var audioFormat = result.Data.Formats?.LastOrDefault(f =>
+                    f?.Resolution == "audio only"
+                );
+
+                return new VideoInfo(
+                    result.Data.Title ?? "Unknown Title",
+                    result.Data.Uploader ?? "Unknown Uploader",
+                    url,
+                    audioFormat?.Url ?? string.Empty
+                );
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error while fetching video info: {ex.Message}");
+                return null;
             }
-            return null;
         }
 
         /// <summary>
@@ -151,12 +123,10 @@ namespace Vera.Music
             try
             {
                 _selectedVideo = video;
-                Console.WriteLine($"Downloading audio for: {video.Title}");
                 var res = await _youtubeDL.RunAudioDownload(video.Url, AudioConversionFormat.Mp3);
                 if (res.Success && res.Data != null && res.Data.Length > 0)
                 {
                     string filePath = Path.Combine(_outputFolder, "output.mp3");
-                    Console.WriteLine($"Audio file downloaded successfully to: {filePath}");
                     await PlayAudioAsync(filePath);
                 }
                 else
@@ -174,7 +144,6 @@ namespace Vera.Music
         {
             try
             {
-                Console.WriteLine($"Initializing playback from file: {filePath}");
                 using var audioFile = new MediaFoundationReader(filePath);
                 await PlayAudioFromReader(audioFile, volume);
             }
@@ -192,7 +161,6 @@ namespace Vera.Music
         /// <returns>A Task representing the asynchronous operation.</returns>
         public static async Task PlayAudioFromUrl(string url, float volume = 0.2f)
         {
-            Console.WriteLine($"Initializing playback from URL: {url}");
             try
             {
                 using var mf = new MediaFoundationReader(url);
@@ -207,39 +175,35 @@ namespace Vera.Music
         private static async Task PlayAudioFromReader(MediaFoundationReader reader, float volume)
         {
             var volumeProvider = new VolumeWaveProvider16(reader) { Volume = volume };
-            _currentOutputDevice = new WaveOutEvent();
-            _currentOutputDevice.Init(volumeProvider);
-            _currentOutputDevice.Play();
+            using (_currentOutputDevice = new WaveOutEvent())
+            {
+                _currentOutputDevice.Init(volumeProvider);
+                _currentOutputDevice.Play();
 
-            var duration = reader.TotalTime;
-            PrintPlaybackInfo();
-            Console.WriteLine($"Total duration: {FormatDuration(duration)}");
-            Console.WriteLine(
-                "Controls: 'P' or Space to pause/resume, 'V' to adjust volume, 'Q' to quit"
-            );
+                var duration = reader.TotalTime;
+                PrintPlaybackInfo();
+                Console.WriteLine($"Total duration: {FormatDuration(duration)}");
+                Console.WriteLine(
+                    "Controls: 'P' or Space to pause/resume, 'V' to adjust volume, 'Q' to quit"
+                );
 
-            await UpdatePlaybackProgressAsync(_currentOutputDevice, reader, duration);
+                await UpdatePlaybackProgressAsync(_currentOutputDevice, reader, duration);
 
-            Console.WriteLine("\nPlayback finished.");
+                Console.WriteLine("\nPlayback finished.");
+            }
         }
 
         private static void HandlePlaybackException(Exception ex)
         {
             Console.WriteLine($"Error during URL audio playback: {ex.Message}");
             if (ex is ArgumentException)
-            {
                 Console.WriteLine("The provided URL might be invalid or not supported.");
-            }
             else if (ex is InvalidOperationException)
-            {
                 Console.WriteLine(
                     "Failed to initialize the audio stream. Please check the URL and try again."
                 );
-            }
             else
-            {
                 Console.WriteLine("An unexpected error occurred. Please try again later.");
-            }
         }
 
         private static void PrintPlaybackInfo()
@@ -250,11 +214,9 @@ namespace Vera.Music
                 return;
             }
 
-            Console.WriteLine("Now Playing:");
-            Console.WriteLine($"Title: {_selectedVideo.Title}");
-            Console.WriteLine($"Artist: {_selectedVideo.Artist}");
-            Console.WriteLine($"Video URL: {_selectedVideo.Url}");
-            Console.WriteLine($"Audio Stream URL: {_selectedVideo.AudioStreamUrl}");
+            Console.WriteLine(
+                $"Now Playing:\nTitle: {_selectedVideo.Title}\nArtist: {_selectedVideo.Artist}\nVideo URL: {_selectedVideo.Url}\nAudio Stream URL: {_selectedVideo.AudioStreamUrl}"
+            );
         }
 
         private static async Task UpdatePlaybackProgressAsync(
@@ -293,22 +255,22 @@ namespace Vera.Music
 
         private static async Task<bool> HandleUserInput(WaveOutEvent outputDevice)
         {
-            if (Console.KeyAvailable)
+            if (!Console.KeyAvailable)
+                return false;
+
+            var key = Console.ReadKey(true).Key;
+            switch (key)
             {
-                var key = Console.ReadKey(true).Key;
-                switch (key)
-                {
-                    case ConsoleKey.P:
-                    case ConsoleKey.Spacebar:
-                        TogglePlayPause(outputDevice);
-                        break;
-                    case ConsoleKey.V:
-                        await AdjustVolumeAsync(outputDevice);
-                        break;
-                    case ConsoleKey.Q:
-                        outputDevice.Stop();
-                        return true;
-                }
+                case ConsoleKey.P:
+                case ConsoleKey.Spacebar:
+                    TogglePlayPause(outputDevice);
+                    break;
+                case ConsoleKey.V:
+                    await AdjustVolumeAsync(outputDevice);
+                    break;
+                case ConsoleKey.Q:
+                    outputDevice.Stop();
+                    return true;
             }
             return false;
         }
@@ -316,13 +278,9 @@ namespace Vera.Music
         private static void TogglePlayPause(WaveOutEvent outputDevice)
         {
             if (outputDevice.PlaybackState == PlaybackState.Playing)
-            {
                 outputDevice.Pause();
-            }
             else if (outputDevice.PlaybackState == PlaybackState.Paused)
-            {
                 outputDevice.Play();
-            }
         }
 
         private static async Task AdjustVolumeAsync(WaveOutEvent outputDevice)
@@ -338,21 +296,17 @@ namespace Vera.Music
                 outputDevice.Volume = _currentVolume;
             }
             Console.SetCursorPosition(0, Console.CursorTop - 1);
-            Console.Write(new string(' ', Console.WindowWidth));
-            Console.SetCursorPosition(0, Console.CursorTop);
         }
 
-        private static string FormatDuration(TimeSpan duration)
-        {
-            return $"{duration.Minutes:D2}:{duration.Seconds:D2}";
-        }
+        private static string FormatDuration(TimeSpan duration) =>
+            $"{duration.Minutes:D2}:{duration.Seconds:D2}";
     }
 
     /// <summary>
     /// Represents information about a YouTube video.
     /// </summary>
     /// <remarks>
-    /// Initializes a new instance of the VideoInfo class.
+    /// Initializes a new instance of the <see cref="VideoInfo"/> class.
     /// </remarks>
     /// <param name="title">The title of the video.</param>
     /// <param name="artist">The artist or uploader of the video.</param>
