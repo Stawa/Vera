@@ -57,7 +57,7 @@ items:
       repo: https://github.com/Stawa/Vera.git
     id: Results
     path: ../Vera/summarize/Response.cs
-    startLine: 12
+    startLine: 15
   assemblies:
   - Vera
   namespace: Vera.Summarize
@@ -71,6 +71,7 @@ items:
     parameters: []
     return:
       type: Vera.Summarize.DeepgramResults
+      description: An instance of <xref href="Vera.Summarize.DeepgramResults" data-throw-if-not-resolved="false"></xref> containing the API response results.
     content.vb: >-
       <JsonPropertyName("results")>
 
@@ -342,12 +343,6 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Vera.Summarize.DeepgramResponse.Results*
-  commentId: Overload:Vera.Summarize.DeepgramResponse.Results
-  href: Vera.Summarize.DeepgramResponse.html#Vera_Summarize_DeepgramResponse_Results
-  name: Results
-  nameWithType: DeepgramResponse.Results
-  fullName: Vera.Summarize.DeepgramResponse.Results
 - uid: Vera.Summarize.DeepgramResults
   commentId: T:Vera.Summarize.DeepgramResults
   parent: Vera.Summarize
@@ -355,3 +350,9 @@ references:
   name: DeepgramResults
   nameWithType: DeepgramResults
   fullName: Vera.Summarize.DeepgramResults
+- uid: Vera.Summarize.DeepgramResponse.Results*
+  commentId: Overload:Vera.Summarize.DeepgramResponse.Results
+  href: Vera.Summarize.DeepgramResponse.html#Vera_Summarize_DeepgramResponse_Results
+  name: Results
+  nameWithType: DeepgramResponse.Results
+  fullName: Vera.Summarize.DeepgramResponse.Results

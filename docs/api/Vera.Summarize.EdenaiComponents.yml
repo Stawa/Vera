@@ -23,7 +23,7 @@ items:
       repo: https://github.com/Stawa/Vera.git
     id: EdenaiComponents
     path: ../Vera/summarize/Response.cs
-    startLine: 67
+    startLine: 85
   assemblies:
   - Vera
   namespace: Vera.Summarize
@@ -60,7 +60,7 @@ items:
       repo: https://github.com/Stawa/Vera.git
     id: Text
     path: ../Vera/summarize/Response.cs
-    startLine: 72
+    startLine: 93
   assemblies:
   - Vera
   namespace: Vera.Summarize
@@ -71,6 +71,7 @@ items:
     parameters: []
     return:
       type: System.String
+      description: A string containing the input text to be summarized by the Edenai API.
     content.vb: Public Property Text As String
   overload: Vera.Summarize.EdenaiComponents.Text*
 - uid: Vera.Summarize.EdenaiComponents.Providers
@@ -91,7 +92,7 @@ items:
       repo: https://github.com/Stawa/Vera.git
     id: Providers
     path: ../Vera/summarize/Response.cs
-    startLine: 77
+    startLine: 101
   assemblies:
   - Vera
   namespace: Vera.Summarize
@@ -102,6 +103,7 @@ items:
     parameters: []
     return:
       type: System.String
+      description: A string specifying the providers to be used for the summarization task.
     content.vb: Public Property Providers As String
   overload: Vera.Summarize.EdenaiComponents.Providers*
 - uid: Vera.Summarize.EdenaiComponents.Language
@@ -122,7 +124,7 @@ items:
       repo: https://github.com/Stawa/Vera.git
     id: Language
     path: ../Vera/summarize/Response.cs
-    startLine: 82
+    startLine: 109
   assemblies:
   - Vera
   namespace: Vera.Summarize
@@ -133,6 +135,7 @@ items:
     parameters: []
     return:
       type: System.String
+      description: A string representing the language code of the input text.
     content.vb: Public Property Language As String
   overload: Vera.Summarize.EdenaiComponents.Language*
 - uid: Vera.Summarize.EdenaiComponents.OutputSentences
@@ -153,7 +156,7 @@ items:
       repo: https://github.com/Stawa/Vera.git
     id: OutputSentences
     path: ../Vera/summarize/Response.cs
-    startLine: 87
+    startLine: 117
   assemblies:
   - Vera
   namespace: Vera.Summarize
@@ -164,6 +167,7 @@ items:
     parameters: []
     return:
       type: System.Int32
+      description: An integer specifying the desired number of sentences in the generated summary.
     content.vb: Public Property OutputSentences As Integer
   overload: Vera.Summarize.EdenaiComponents.OutputSentences*
 references:

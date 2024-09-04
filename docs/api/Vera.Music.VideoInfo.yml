@@ -24,7 +24,7 @@ items:
       repo: https://github.com/Stawa/Vera.git
     id: VideoInfo
     path: ../Vera/music/Library.cs
-    startLine: 356
+    startLine: 360
   assemblies:
   - Vera
   namespace: Vera.Music
@@ -62,7 +62,7 @@ items:
       repo: https://github.com/Stawa/Vera.git
     id: .ctor
     path: ../Vera/music/Library.cs
-    startLine: 356
+    startLine: 360
   assemblies:
   - Vera
   namespace: Vera.Music
@@ -107,7 +107,7 @@ items:
       repo: https://github.com/Stawa/Vera.git
     id: Title
     path: ../Vera/music/Library.cs
-    startLine: 361
+    startLine: 368
   assemblies:
   - Vera
   namespace: Vera.Music
@@ -118,6 +118,7 @@ items:
     parameters: []
     return:
       type: System.String
+      description: The title of the video as a string.
     content.vb: Public ReadOnly Property Title As String
   overload: Vera.Music.VideoInfo.Title*
 - uid: Vera.Music.VideoInfo.Artist
@@ -138,7 +139,7 @@ items:
       repo: https://github.com/Stawa/Vera.git
     id: Artist
     path: ../Vera/music/Library.cs
-    startLine: 366
+    startLine: 376
   assemblies:
   - Vera
   namespace: Vera.Music
@@ -149,6 +150,7 @@ items:
     parameters: []
     return:
       type: System.String
+      description: The artist or uploader of the video as a string.
     content.vb: Public ReadOnly Property Artist As String
   overload: Vera.Music.VideoInfo.Artist*
 - uid: Vera.Music.VideoInfo.Url
@@ -169,7 +171,7 @@ items:
       repo: https://github.com/Stawa/Vera.git
     id: Url
     path: ../Vera/music/Library.cs
-    startLine: 371
+    startLine: 384
   assemblies:
   - Vera
   namespace: Vera.Music
@@ -180,6 +182,7 @@ items:
     parameters: []
     return:
       type: System.String
+      description: The URL of the video as a string.
     content.vb: Public ReadOnly Property Url As String
   overload: Vera.Music.VideoInfo.Url*
 - uid: Vera.Music.VideoInfo.AudioStreamUrl
@@ -200,7 +203,7 @@ items:
       repo: https://github.com/Stawa/Vera.git
     id: AudioStreamUrl
     path: ../Vera/music/Library.cs
-    startLine: 376
+    startLine: 392
   assemblies:
   - Vera
   namespace: Vera.Music
@@ -211,6 +214,7 @@ items:
     parameters: []
     return:
       type: System.String
+      description: The URL of the audio stream for the video as a string.
     content.vb: Public ReadOnly Property AudioStreamUrl As String
   overload: Vera.Music.VideoInfo.AudioStreamUrl*
 references:

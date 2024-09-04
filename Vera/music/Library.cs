@@ -143,6 +143,9 @@ namespace Vera.Music
         /// Downloads and plays the audio of the specified video.
         /// </summary>
         /// <param name="video">The VideoInfo object representing the video to play.</param>
+        /// <returns>
+        /// A Task representing the asynchronous operation of downloading and playing the audio.
+        /// </returns>
         public async Task Play(VideoInfo video)
         {
             try
@@ -186,6 +189,7 @@ namespace Vera.Music
         /// </summary>
         /// <param name="url">The URL of the audio to play.</param>
         /// <param name="volume">The initial volume (0.0 to 1.0, default is 0.2).</param>
+        /// <returns>A Task representing the asynchronous operation.</returns>
         public static async Task PlayAudioFromUrl(string url, float volume = 0.2f)
         {
             Console.WriteLine($"Initializing playback from URL: {url}");
@@ -359,21 +363,33 @@ namespace Vera.Music
         /// <summary>
         /// Gets the title of the video.
         /// </summary>
+        /// <value>
+        /// The title of the video as a string.
+        /// </value>
         public string Title { get; } = title;
 
         /// <summary>
         /// Gets the artist or uploader of the video.
         /// </summary>
+        /// <value>
+        /// The artist or uploader of the video as a string.
+        /// </value>
         public string Artist { get; } = artist;
 
         /// <summary>
         /// Gets the URL of the video.
         /// </summary>
+        /// <value>
+        /// The URL of the video as a string.
+        /// </value>
         public string Url { get; } = url;
 
         /// <summary>
         /// Gets the URL of the audio stream for the video.
         /// </summary>
+        /// <value>
+        /// The URL of the audio stream for the video as a string.
+        /// </value>
         public string AudioStreamUrl { get; } = audioStreamUrl;
     }
 }
