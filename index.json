@@ -1,0 +1,12 @@
+{
+  "change-log.html": {
+    "href": "change-log.html",
+    "title": "📜 Changelog | Vera Documentation",
+    "keywords": "📜 Changelog All notable changes to this project will be documented in this file. The format is based on Keep a Changelog, and this project adheres to Semantic Versioning. v1.0.0 - 3rd September 2024 Added Initial project setup Gemini API integration Text-to-Speech conversion functionality Error handling mechanisms Basic testing framework Music playback feature Documentation structure In Progress Speech-to-Text conversion Planned Voice prompting feature Language switching capability Vera Visual expansion (future plan)"
+  },
+  "index.html": {
+    "href": "index.html",
+    "title": "📖 Quick Start | Vera Documentation",
+    "keywords": "📖 Quick Start Vera is a .NET package that converts textual content to speech, utilizing Google AI (Gemini) for text generation and internet-based information retrieval. 📚 Usage Here's an example of using Vera to generate a response from the Gemini API: using Vera; using System; using System.Threading.Tasks; class Program { static async Task Main(string[] args) { string apiKey = \"GEMINI_API_KEY\"; var gemini = new Gemini(apiKey, Gemini.GeminiModel.Gemini15FlashLatest); try { string prompt = \"Explain the concept of artificial intelligence in simple terms.\"; Console.WriteLine(\"Sending prompt to Gemini API...\"); string response = await gemini.FetchResponseAsync(prompt); Console.WriteLine(\"Response from Gemini:\"); Console.WriteLine(response); } catch (GeminiApiException ex) { Console.WriteLine($\"Error occurred: {ex.Message}\"); if (ex.InnerException != null) { Console.WriteLine($\"Inner exception: {ex.InnerException.Message}\"); } } catch (Exception ex) { Console.WriteLine($\"Unexpected error: {ex.Message}\"); } } } Explore the examples directory in this repository for more detailed examples and use cases. These examples highlight Vera's various capabilities and applications. 📜 License This project is licensed under the MIT License. See the LICENSE file for more details."
+  }
+}
