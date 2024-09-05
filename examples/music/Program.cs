@@ -18,11 +18,7 @@ class Program
 
         var searchResult = await youtubeMusic.Search(query, 1);
 
-        if (searchResult is VideoInfo singleVideo)
-        {
-            await PlayVideo(singleVideo);
-        }
-        else if (searchResult is List<VideoInfo> results)
+        if (searchResult is List<VideoInfo> results)
         {
             if (results.Count == 0)
             {
@@ -48,7 +44,7 @@ class Program
     private static async Task PlayVideo(VideoInfo video)
     {
         Console.WriteLine($"Playing: {video.Title} by {video.Artist}");
-        await YouTubeMusic.PlayAudioFromUrl(video.AudioStreamUrl);
+        await YouTubeMusic.PlayAudioFromUrl(video.AudioStreamUrl, 0.2f, video);
     }
 
     private static async Task HandleMultipleResults(List<VideoInfo> results)

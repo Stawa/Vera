@@ -1,4 +1,6 @@
+using System.Collections.Concurrent;
 using System.Text.RegularExpressions;
+using ConsoleTableExt;
 using NAudio.Wave;
 using YoutubeDLSharp;
 using YoutubeDLSharp.Options;
@@ -8,15 +10,15 @@ namespace Vera.Music
     /// <summary>
     /// Provides functionality for searching, downloading, and playing YouTube music.
     /// </summary>
-    public class YouTubeMusic
+    public partial class YouTubeMusic
     {
         private readonly YoutubeDL _youtubeDL;
         private readonly string _outputFolder;
         private static VideoInfo? _selectedVideo;
         private static WaveOutEvent? _currentOutputDevice;
         private static float _currentVolume = 0.2f;
-        private static readonly Regex _youtubeUrlRegex =
-            new(@"^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$", RegexOptions.Compiled);
+        private static readonly Regex _youtubeUrlRegex = YouTubeRegex();
+        private static readonly ConcurrentDictionary<string, VideoInfo> _videoInfoCache = new();
 
         /// <summary>
         /// Initializes a new instance of the YouTubeMusic class.
@@ -61,7 +63,7 @@ namespace Vera.Music
         {
             var videoInfo = await GetVideoInfoFromUrl(query);
             _selectedVideo = videoInfo;
-            return videoInfo != null ? new List<VideoInfo> { videoInfo } : new List<VideoInfo>();
+            return videoInfo != null ? [videoInfo] : [];
         }
 
         private async Task<List<VideoInfo>> SearchMultipleVideos(string query, int maxResults)
@@ -72,10 +74,11 @@ namespace Vera.Music
             );
 
             if (!searchResult.Success || searchResult.Data?.Entries == null)
-                return new List<VideoInfo>();
+                return [];
 
             var tasks = searchResult
-                .Data.Entries.Select(video => GetVideoInfoFromUrl(video.ID))
+                .Data.Entries.AsParallel()
+                .Select(async video => await GetVideoInfoFromUrl(video.ID))
                 .ToList();
 
             var results = await Task.WhenAll(tasks);
@@ -86,6 +89,9 @@ namespace Vera.Music
 
         private async Task<VideoInfo?> GetVideoInfoFromUrl(string url)
         {
+            if (_videoInfoCache.TryGetValue(url, out var cachedInfo))
+                return cachedInfo;
+
             try
             {
                 var result = await _youtubeDL.RunVideoDataFetch(url);
@@ -97,12 +103,15 @@ namespace Vera.Music
                     f?.Resolution == "audio only"
                 );
 
-                return new VideoInfo(
+                var videoInfo = new VideoInfo(
                     result.Data.Title ?? "Unknown Title",
                     result.Data.Uploader ?? "Unknown Uploader",
                     url,
                     audioFormat?.Url ?? string.Empty
                 );
+
+                _videoInfoCache.TryAdd(url, videoInfo);
+                return videoInfo;
             }
             catch (Exception ex)
             {
@@ -123,16 +132,22 @@ namespace Vera.Music
             try
             {
                 _selectedVideo = video;
-                var res = await _youtubeDL.RunAudioDownload(video.Url, AudioConversionFormat.Mp3);
-                if (res.Success && res.Data != null && res.Data.Length > 0)
+                var filePath = Path.Combine(_outputFolder, $"{video.Url}.mp3");
+
+                if (!File.Exists(filePath))
                 {
-                    string filePath = Path.Combine(_outputFolder, "output.mp3");
-                    await PlayAudioAsync(filePath);
+                    var res = await _youtubeDL.RunAudioDownload(
+                        video.Url,
+                        AudioConversionFormat.Mp3
+                    );
+                    if (!res.Success || res.Data == null || res.Data.Length == 0)
+                    {
+                        Console.WriteLine("Failed to download the audio or no data returned.");
+                        return;
+                    }
                 }
-                else
-                {
-                    Console.WriteLine("Failed to download the audio or no data returned.");
-                }
+
+                await PlayAudioAsync(filePath);
             }
             catch (Exception ex)
             {
@@ -159,10 +174,15 @@ namespace Vera.Music
         /// <param name="url">The URL of the audio to play.</param>
         /// <param name="volume">The initial volume (0.0 to 1.0, default is 0.2).</param>
         /// <returns>A Task representing the asynchronous operation.</returns>
-        public static async Task PlayAudioFromUrl(string url, float volume = 0.2f)
+        public static async Task PlayAudioFromUrl(
+            string url,
+            float volume = 0.2f,
+            object? videoInfo = null
+        )
         {
             try
             {
+                _selectedVideo = videoInfo as VideoInfo;
                 using var mf = new MediaFoundationReader(url);
                 await PlayAudioFromReader(mf, volume);
             }
@@ -214,9 +234,41 @@ namespace Vera.Music
                 return;
             }
 
-            Console.WriteLine(
-                $"Now Playing:\nTitle: {_selectedVideo.Title}\nArtist: {_selectedVideo.Artist}\nVideo URL: {_selectedVideo.Url}\nAudio Stream URL: {_selectedVideo.AudioStreamUrl}"
-            );
+            string videoUrl = _youtubeUrlRegex.IsMatch(_selectedVideo.Url)
+                ? _selectedVideo.Url
+                : $"https://www.youtube.com/watch?v={_selectedVideo.Url}";
+
+            var tableData = new List<List<object>>
+            {
+                new() { "Title", _selectedVideo.Title },
+                new() { "Artist", _selectedVideo.Artist },
+                new() { "Video URL", $"{videoUrl} (ID: {_selectedVideo.Url})" },
+                new()
+                {
+                    "Controls",
+                    "'P' or Space to pause/resume, 'V' to adjust volume, 'Q' to quit",
+                },
+            };
+
+            ConsoleTableBuilder
+                .From(tableData)
+                .WithCharMapDefinition(
+                    CharMapDefinition.FramePipDefinition,
+                    new Dictionary<HeaderCharMapPositions, char>
+                    {
+                        { HeaderCharMapPositions.TopLeft, '╒' },
+                        { HeaderCharMapPositions.TopCenter, '╤' },
+                        { HeaderCharMapPositions.TopRight, '╕' },
+                        { HeaderCharMapPositions.BottomLeft, '╞' },
+                        { HeaderCharMapPositions.BottomCenter, '╪' },
+                        { HeaderCharMapPositions.BottomRight, '╡' },
+                        { HeaderCharMapPositions.BorderTop, '═' },
+                        { HeaderCharMapPositions.BorderRight, '│' },
+                        { HeaderCharMapPositions.BorderLeft, '│' },
+                        { HeaderCharMapPositions.Divider, '│' },
+                    }
+                )
+                .ExportAndWriteLine(TableAligntment.Left);
         }
 
         private static async Task UpdatePlaybackProgressAsync(
@@ -299,7 +351,13 @@ namespace Vera.Music
         }
 
         private static string FormatDuration(TimeSpan duration) =>
-            $"{duration.Minutes:D2}:{duration.Seconds:D2}";
+            $"{(int)duration.TotalMinutes:D2}:{duration.Seconds:D2}";
+
+        [GeneratedRegex(
+            @"^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$",
+            RegexOptions.Compiled
+        )]
+        private static partial Regex YouTubeRegex();
     }
 
     /// <summary>
