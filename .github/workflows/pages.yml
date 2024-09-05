@@ -1,39 +1,35 @@
+name: Build and Deploy DocFX Documentation
+
 on:
   push:
     branches:
       - main
-
-permissions:
-  actions: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  publish-docs:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Dotnet Setup
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: 8.x
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-      - run: dotnet tool update -g docfx
-      - run: docfx docs/docfx.json
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v1
         with:
-          path: "docs/_site"
+          dotnet-version: "8.0.x"
+
+      - name: Install DocFX
+        run: dotnet tool install -g docfx
+
+      - name: Generate DocFX documentation
+        working-directory: ./docs
+        run: docfx build
 
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/_site
