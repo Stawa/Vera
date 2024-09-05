@@ -2,7 +2,7 @@
   "change-log.html": {
     "href": "change-log.html",
     "title": "📜 Changelog | Vera Documentation",
-    "keywords": "📜 Changelog All notable changes to this project will be documented in this file. The format is based on Keep a Changelog, and this project adheres to Semantic Versioning. v1.0.0 - 3rd September 2024 Added Initial project setup Gemini API integration Text-to-Speech conversion functionality Error handling mechanisms Basic testing framework Music playback feature Documentation structure In Progress Speech-to-Text conversion Planned Voice prompting feature Language switching capability Vera Visual expansion (future plan)"
+    "keywords": "📜 Changelog All notable changes to this project will be documented in this file. The format is based on Keep a Changelog, and this project adheres to Semantic Versioning. [Unreleased] Added Initial project setup Gemini API integration Text-to-Speech conversion functionality Error handling mechanisms Basic testing framework Music playback feature Added the ability to play audio from a YouTube video Added controls for volume, pause and resume. Documentation structure In Progress Speech-to-Text conversion Fixed Resolved a critical bug in the PlayAudioFromUrl method within the music module where the selected video object was unexpectedly null. Enhanced error handling in the music playback feature to provide more informative messages when video information is unavailable. Planned Voice prompting feature Language switching capability Vera Visual expansion (future plan)"
   },
   "index.html": {
     "href": "index.html",

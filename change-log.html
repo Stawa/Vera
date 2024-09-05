@@ -99,7 +99,7 @@
 <p>All notable changes to this project will be documented in this file.</p>
 <p>The format is based on <a href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>,
 and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p>
-<h2 id="v100---3rd-september-2024">v1.0.0 - 3rd September 2024</h2>
+<h2 id="unreleased">[Unreleased]</h2>
 <h3 id="added">Added</h3>
 <ul>
 <li>Initial project setup</li>
@@ -107,12 +107,22 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
 <li>Text-to-Speech conversion functionality</li>
 <li>Error handling mechanisms</li>
 <li>Basic testing framework</li>
-<li>Music playback feature</li>
+<li>Music playback feature
+<ul>
+<li>Added the ability to play audio from a YouTube video</li>
+<li>Added controls for volume, pause and resume.</li>
+</ul>
+</li>
 <li>Documentation structure</li>
 </ul>
 <h3 id="in-progress">In Progress</h3>
 <ul>
 <li>Speech-to-Text conversion</li>
+</ul>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>Resolved a critical bug in the <code>PlayAudioFromUrl</code> method within the music module where the selected video object was unexpectedly null.</li>
+<li>Enhanced error handling in the music playback feature to provide more informative messages when video information is unavailable.</li>
 </ul>
 <h3 id="planned">Planned</h3>
 <ul>
