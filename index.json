@@ -1,4 +1,109 @@
 {
+  "api/Vera.Gemini.GeminiModel.html": {
+    "href": "api/Vera.Gemini.GeminiModel.html",
+    "title": "Enum Gemini.GeminiModel | Vera Documentation",
+    "keywords": "Enum Gemini.GeminiModel Represents the available Gemini models. Namespace: Vera Assembly: Vera.dll Syntax public enum Gemini.GeminiModel Fields Name Description Gemini10Pro Gemini 1.0 Pro model Gemini15Flash Gemini 1.5 Flash model Gemini15FlashLatest Latest Gemini 1.5 Flash model Gemini15Pro Gemini 1.5 Pro model Gemini15ProLatest Latest Gemini 1.5 Pro model GeminiPro Gemini Pro model GeminiProVision Gemini Pro Vision model"
+  },
+  "api/Vera.Gemini.html": {
+    "href": "api/Vera.Gemini.html",
+    "title": "Class Gemini | Vera Documentation",
+    "keywords": "Class Gemini Represents a client for interacting with the Gemini API. Inheritance object Gemini Inherited Members object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Namespace: Vera Assembly: Vera.dll Syntax public class Gemini Constructors Gemini(string, GeminiModel, HttpClient?) Represents a client for interacting with the Gemini API. Declaration public Gemini(string apiKey, Gemini.GeminiModel model = GeminiModel.Gemini15FlashLatest, HttpClient? httpClient = null) Parameters Type Name Description string apiKey The API key for authenticating with the Gemini API. Gemini.GeminiModel model The Gemini model to use. Defaults to Gemini15FlashLatest. HttpClient httpClient An optional HttpClient instance. If not provided, a new one will be created. Methods FetchResponseAsync(string) Sends a prompt to the Gemini API and retrieves the generated response. Declaration public Task<string> FetchResponseAsync(string prompt) Parameters Type Name Description string prompt The input prompt to send to the Gemini API. Returns Type Description Task<string> The generated response from the Gemini API. Exceptions Type Condition ArgumentException Thrown when the prompt is null or empty. GeminiApiException Thrown when there's an error communicating with the Gemini API or parsing the response."
+  },
+  "api/Vera.GeminiApiException.html": {
+    "href": "api/Vera.GeminiApiException.html",
+    "title": "Class GeminiApiException | Vera Documentation",
+    "keywords": "Class GeminiApiException Represents an exception that occurs during interactions with the Gemini API. Inheritance object Exception GeminiApiException Implements ISerializable Inherited Members Exception.GetBaseException() Exception.GetType() Exception.ToString() Exception.Data Exception.HelpLink Exception.HResult Exception.InnerException Exception.Message Exception.Source Exception.StackTrace Exception.TargetSite Exception.SerializeObjectState object.Equals(object) object.Equals(object, object) object.GetHashCode() object.MemberwiseClone() object.ReferenceEquals(object, object) Namespace: Vera Assembly: Vera.dll Syntax public class GeminiApiException : Exception, ISerializable Constructors GeminiApiException(string, Exception) Represents an exception that occurs during interactions with the Gemini API. Declaration public GeminiApiException(string message, Exception innerException) Parameters Type Name Description string message Exception innerException Implements ISerializable"
+  },
+  "api/Vera.Music.VideoInfo.html": {
+    "href": "api/Vera.Music.VideoInfo.html",
+    "title": "Class VideoInfo | Vera Documentation",
+    "keywords": "Class VideoInfo Represents information about a YouTube video. Inheritance object VideoInfo Inherited Members object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Namespace: Vera.Music Assembly: Vera.dll Syntax public class VideoInfo Remarks Initializes a new instance of the VideoInfo class. Constructors VideoInfo(string, string, string, string) Represents information about a YouTube video. Declaration public VideoInfo(string title, string artist, string url, string audioStreamUrl) Parameters Type Name Description string title The title of the video. string artist The artist or uploader of the video. string url The URL of the video. string audioStreamUrl The URL of the audio stream for the video. Remarks Initializes a new instance of the VideoInfo class. Properties Artist Gets the artist or uploader of the video. Declaration public string Artist { get; } Property Value Type Description string The artist or uploader of the video as a string. AudioStreamUrl Gets the URL of the audio stream for the video. Declaration public string AudioStreamUrl { get; } Property Value Type Description string The URL of the audio stream for the video as a string. Title Gets the title of the video. Declaration public string Title { get; } Property Value Type Description string The title of the video as a string. Url Gets the URL of the video. Declaration public string Url { get; } Property Value Type Description string The URL of the video as a string."
+  },
+  "api/Vera.Music.YouTubeMusic.html": {
+    "href": "api/Vera.Music.YouTubeMusic.html",
+    "title": "Class YouTubeMusic | Vera Documentation",
+    "keywords": "Class YouTubeMusic Provides functionality for searching, downloading, and playing YouTube music. Inheritance object YouTubeMusic Inherited Members object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Namespace: Vera.Music Assembly: Vera.dll Syntax public class YouTubeMusic Constructors YouTubeMusic(string, string, string) Initializes a new instance of the YouTubeMusic class. Declaration public YouTubeMusic(string youtubeDLPath, string ffmpegPath, string outputFolder) Parameters Type Name Description string youtubeDLPath The path to the youtube-dl executable. string ffmpegPath The path to the ffmpeg executable. string outputFolder The folder where downloaded audio files will be saved. Methods Play(VideoInfo) Downloads and plays the audio of the specified video. Declaration public Task Play(VideoInfo video) Parameters Type Name Description VideoInfo video The VideoInfo object representing the video to play. Returns Type Description Task A Task representing the asynchronous operation of downloading and playing the audio. PlayAudioFromUrl(string, float, object?) Plays audio from the specified URL. Declaration public static Task PlayAudioFromUrl(string url, float volume = 0.2, object? videoInfo = null) Parameters Type Name Description string url The URL of the audio to play. float volume The initial volume (0.0 to 1.0, default is 0.2). object videoInfo Returns Type Description Task A Task representing the asynchronous operation. Search(string, int) Searches for YouTube videos based on the provided query. Declaration public Task<object> Search(string query, int maxResults = 5) Parameters Type Name Description string query The search query or YouTube URL. int maxResults The maximum number of results to return (default is 5). Returns Type Description Task<object> A list of VideoInfo objects representing the search results."
+  },
+  "api/Vera.Music.html": {
+    "href": "api/Vera.Music.html",
+    "title": "Namespace Vera.Music | Vera Documentation",
+    "keywords": "Namespace Vera.Music Classes VideoInfo Represents information about a YouTube video. YouTubeMusic Provides functionality for searching, downloading, and playing YouTube music."
+  },
+  "api/Vera.Summarize.DeepgramResponse.html": {
+    "href": "api/Vera.Summarize.DeepgramResponse.html",
+    "title": "Class DeepgramResponse | Vera Documentation",
+    "keywords": "Class DeepgramResponse Represents the response from the Deepgram API. Inheritance object DeepgramResponse Inherited Members object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Namespace: Vera.Summarize Assembly: Vera.dll Syntax public class DeepgramResponse Properties Results Gets or sets the results of the Deepgram API response. Declaration [JsonPropertyName(\"results\")] public DeepgramResults? Results { get; set; } Property Value Type Description DeepgramResults An instance of DeepgramResults containing the API response results."
+  },
+  "api/Vera.Summarize.DeepgramResults.html": {
+    "href": "api/Vera.Summarize.DeepgramResults.html",
+    "title": "Class DeepgramResults | Vera Documentation",
+    "keywords": "Class DeepgramResults Represents the results section of the Deepgram API response. Inheritance object DeepgramResults Inherited Members object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Namespace: Vera.Summarize Assembly: Vera.dll Syntax public class DeepgramResults Properties Summary Gets or sets the summary of the Deepgram API results. Declaration [JsonPropertyName(\"summary\")] public DeepgramSummary? Summary { get; set; } Property Value Type Description DeepgramSummary An instance of DeepgramSummary containing the summarized results."
+  },
+  "api/Vera.Summarize.DeepgramSummary.html": {
+    "href": "api/Vera.Summarize.DeepgramSummary.html",
+    "title": "Class DeepgramSummary | Vera Documentation",
+    "keywords": "Class DeepgramSummary Represents the summary section of the Deepgram API results. Inheritance object DeepgramSummary Inherited Members object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Namespace: Vera.Summarize Assembly: Vera.dll Syntax public class DeepgramSummary Properties Text Gets or sets the summarized text from the Deepgram API. Declaration [JsonPropertyName(\"text\")] public string? Text { get; set; } Property Value Type Description string A string containing the summarized text generated by the Deepgram API."
+  },
+  "api/Vera.Summarize.EdenaiComponents.html": {
+    "href": "api/Vera.Summarize.EdenaiComponents.html",
+    "title": "Class EdenaiComponents | Vera Documentation",
+    "keywords": "Class EdenaiComponents Represents the components of an Edenai API request. Inheritance object EdenaiComponents Inherited Members object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Namespace: Vera.Summarize Assembly: Vera.dll Syntax public class EdenaiComponents Properties Language Gets or sets the language of the text to be summarized. Declaration public string? Language { get; set; } Property Value Type Description string A string representing the language code of the input text. OutputSentences Gets or sets the number of sentences in the output summary. Declaration public int OutputSentences { get; set; } Property Value Type Description int An integer specifying the desired number of sentences in the generated summary. Providers Gets or sets the providers to be used for summarization. Declaration public string? Providers { get; set; } Property Value Type Description string A string specifying the providers to be used for the summarization task. Text Gets or sets the text to be summarized. Declaration public string? Text { get; set; } Property Value Type Description string A string containing the input text to be summarized by the Edenai API."
+  },
+  "api/Vera.Summarize.EdenaiResponse.html": {
+    "href": "api/Vera.Summarize.EdenaiResponse.html",
+    "title": "Class EdenaiResponse | Vera Documentation",
+    "keywords": "Class EdenaiResponse Represents the response from the Edenai API. Inheritance object EdenaiResponse Inherited Members object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Namespace: Vera.Summarize Assembly: Vera.dll Syntax public class EdenaiResponse Properties Cost Gets or sets the cost associated with the Edenai API request. Declaration [JsonPropertyName(\"cost\")] public decimal Cost { get; set; } Property Value Type Description decimal A decimal value representing the cost of the API request. Result Gets or sets the result of the Edenai API response. Declaration [JsonPropertyName(\"result\")] public string? Result { get; set; } Property Value Type Description string A string containing the summarized text generated by the Edenai API. Status Gets or sets the status of the Edenai API response. Declaration [JsonPropertyName(\"status\")] public string? Status { get; set; } Property Value Type Description string A string indicating the status of the API response (e.g., \"success\" or \"error\")."
+  },
+  "api/Vera.Summarize.SummarizeText.html": {
+    "href": "api/Vera.Summarize.SummarizeText.html",
+    "title": "Class SummarizeText | Vera Documentation",
+    "keywords": "Class SummarizeText Provides functionality to summarize text using various API services. Inheritance object SummarizeText Inherited Members object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Namespace: Vera.Summarize Assembly: Vera.dll Syntax public class SummarizeText Constructors SummarizeText(Dictionary<string, string>, HttpClient, bool) Initializes a new instance of the SummarizeText class. Declaration public SummarizeText(Dictionary<string, string> apiTokens, HttpClient httpClient, bool logger = false) Parameters Type Name Description Dictionary<string, string> apiTokens A dictionary containing API tokens for different services. HttpClient httpClient The HttpClient instance to use for API requests. bool logger A boolean indicating whether to enable logging. Methods DeepgramAsync(string, string) Summarizes text using the Deepgram API. Declaration public Task<string> DeepgramAsync(string text, string languageCode) Parameters Type Name Description string text The text to summarize. string languageCode The language code of the text. Returns Type Description Task<string> A task that represents the asynchronous operation. The task result contains the summarized text. EdenaiAsync(EdenaiComponents) Summarizes text using the Edenai API. Declaration public Task<EdenaiResponse> EdenaiAsync(EdenaiComponents components) Parameters Type Name Description EdenaiComponents components The EdenaiComponents object containing the text and other parameters for summarization. Returns Type Description Task<EdenaiResponse> A task that represents the asynchronous operation. The task result contains the EdenaiResponse with the summarized text and cost information."
+  },
+  "api/Vera.Summarize.html": {
+    "href": "api/Vera.Summarize.html",
+    "title": "Namespace Vera.Summarize | Vera Documentation",
+    "keywords": "Namespace Vera.Summarize Classes DeepgramResponse Represents the response from the Deepgram API. DeepgramResults Represents the results section of the Deepgram API response. DeepgramSummary Represents the summary section of the Deepgram API results. EdenaiComponents Represents the components of an Edenai API request. EdenaiResponse Represents the response from the Edenai API. SummarizeText Provides functionality to summarize text using various API services."
+  },
+  "api/Vera.Voice.IRecognitionEngine.html": {
+    "href": "api/Vera.Voice.IRecognitionEngine.html",
+    "title": "Interface IRecognitionEngine | Vera Documentation",
+    "keywords": "Interface IRecognitionEngine Namespace: Vera.Voice Assembly: Vera.dll Syntax public interface IRecognitionEngine Methods RecognizeSpeechAsync(Stream) Declaration Task<string> RecognizeSpeechAsync(Stream audioStream) Parameters Type Name Description Stream audioStream Returns Type Description Task<string>"
+  },
+  "api/Vera.Voice.IVoiceRecognition.html": {
+    "href": "api/Vera.Voice.IVoiceRecognition.html",
+    "title": "Interface IVoiceRecognition | Vera Documentation",
+    "keywords": "Interface IVoiceRecognition Inherited Members IDisposable.Dispose() Namespace: Vera.Voice Assembly: Vera.dll Syntax public interface IVoiceRecognition : IDisposable Methods RecognizeSpeech(byte[]) Declaration string RecognizeSpeech(byte[] audioData) Parameters Type Name Description byte[] audioData Returns Type Description string"
+  },
+  "api/Vera.Voice.MicrophoneInfo.html": {
+    "href": "api/Vera.Voice.MicrophoneInfo.html",
+    "title": "Class MicrophoneInfo | Vera Documentation",
+    "keywords": "Class MicrophoneInfo Inheritance object MicrophoneInfo Inherited Members object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Namespace: Vera.Voice Assembly: Vera.dll Syntax public class MicrophoneInfo Properties Channels Declaration public required int Channels { get; set; } Property Value Type Description int Index Declaration public required int Index { get; set; } Property Value Type Description int Name Declaration public required string Name { get; set; } Property Value Type Description string"
+  },
+  "api/Vera.Voice.RealtimeMicrophoneRecognition.html": {
+    "href": "api/Vera.Voice.RealtimeMicrophoneRecognition.html",
+    "title": "Class RealtimeMicrophoneRecognition | Vera Documentation",
+    "keywords": "Class RealtimeMicrophoneRecognition Inheritance object RealtimeMicrophoneRecognition Implements IDisposable Inherited Members object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Namespace: Vera.Voice Assembly: Vera.dll Syntax public class RealtimeMicrophoneRecognition : IDisposable Constructors RealtimeMicrophoneRecognition(string, int, int) Declaration public RealtimeMicrophoneRecognition(string modelPath, int sampleRate = 16000, int channels = 1) Parameters Type Name Description string modelPath int sampleRate int channels Methods Dispose() Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources. Declaration public void Dispose() ListMicrophones() Declaration public static List<MicrophoneInfo> ListMicrophones() Returns Type Description List<MicrophoneInfo> StartAsync() Declaration public Task StartAsync() Returns Type Description Task StopAsync() Declaration public Task StopAsync() Returns Type Description Task Events ResultResponse Declaration public event EventHandler<string>? ResultResponse Event Type Type Description EventHandler<string> SpeechEndResult Declaration public event EventHandler<string>? SpeechEndResult Event Type Type Description EventHandler<string> Implements IDisposable"
+  },
+  "api/Vera.Voice.RecognitionEngineFactory.html": {
+    "href": "api/Vera.Voice.RecognitionEngineFactory.html",
+    "title": "Class RecognitionEngineFactory | Vera Documentation",
+    "keywords": "Class RecognitionEngineFactory Inheritance object RecognitionEngineFactory Inherited Members object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Namespace: Vera.Voice Assembly: Vera.dll Syntax public static class RecognitionEngineFactory Methods CreateEngine(string) Declaration public static IRecognitionEngine CreateEngine(string modelPath) Parameters Type Name Description string modelPath Returns Type Description IRecognitionEngine"
+  },
+  "api/Vera.Voice.VoskVoiceRecognition.html": {
+    "href": "api/Vera.Voice.VoskVoiceRecognition.html",
+    "title": "Class VoskVoiceRecognition | Vera Documentation",
+    "keywords": "Class VoskVoiceRecognition Inheritance object VoskVoiceRecognition Implements IVoiceRecognition IDisposable Inherited Members object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Namespace: Vera.Voice Assembly: Vera.dll Syntax public class VoskVoiceRecognition : IVoiceRecognition, IDisposable Constructors VoskVoiceRecognition(string) Declaration public VoskVoiceRecognition(string modelPath) Parameters Type Name Description string modelPath Methods Dispose() Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources. Declaration public void Dispose() RecognizeSpeech(byte[]) Declaration public string RecognizeSpeech(byte[] audioData) Parameters Type Name Description byte[] audioData Returns Type Description string Implements IVoiceRecognition IDisposable"
+  },
+  "api/Vera.Voice.html": {
+    "href": "api/Vera.Voice.html",
+    "title": "Namespace Vera.Voice | Vera Documentation",
+    "keywords": "Namespace Vera.Voice Classes MicrophoneInfo RealtimeMicrophoneRecognition RecognitionEngineFactory VoskVoiceRecognition Interfaces IRecognitionEngine IVoiceRecognition"
+  },
+  "api/Vera.html": {
+    "href": "api/Vera.html",
+    "title": "Namespace Vera | Vera Documentation",
+    "keywords": "Namespace Vera Classes Gemini Represents a client for interacting with the Gemini API. GeminiApiException Represents an exception that occurs during interactions with the Gemini API. Enums Gemini.GeminiModel Represents the available Gemini models."
+  },
   "change-log.html": {
     "href": "change-log.html",
     "title": "📜 Changelog | Vera Documentation",
