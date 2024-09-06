@@ -25,6 +25,7 @@
     "keepFileLink": false,
     "cleanupCacheHistory": false,
     "disableGitFeatures": false,
+    "disableDefaultFilter": false,
     "globalMetadata": {
       "_appName": "Vera",
       "_appTitle": "Vera Documentation",
@@ -37,6 +38,9 @@
         "repo": "https://github.com/Stawa/Vera",
         "branch": "main"
       }
+    },
+    "properties": {
+      "TargetFramework": "netstandard2.0"
     }
   }
 }
