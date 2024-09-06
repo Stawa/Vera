@@ -26,6 +26,10 @@ jobs:
       - name: Install DocFX
         run: dotnet tool install -g docfx
 
+      - name: Generate DocFX metadata
+        working-directory: ./docs
+        run: docfx metadata
+
       - name: Generate DocFX documentation
         working-directory: ./docs
         run: docfx build
