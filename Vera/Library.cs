@@ -7,7 +7,7 @@ namespace Vera
     /// Represents a client for interacting with the Gemini API.
     /// </summary>
     /// <param name="apiKey">The API key for authenticating with the Gemini API.</param>
-    /// <param name="model">The Gemini model to use. Defaults to <see cref="Gemini.GeminiModel.Gemini15FlashLatest"/>.</param>
+    /// <param name="model">The Gemini model to use. Defaults to <see cref="GeminiModel.Gemini15FlashLatest"/>.</param>
     /// <param name="httpClient">An optional <see cref="HttpClient"/> instance. If not provided, a new one will be created.</param>
     public class Gemini(
         string apiKey,

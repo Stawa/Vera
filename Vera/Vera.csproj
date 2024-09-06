@@ -1,4 +1,5 @@
-﻿<Project Sdk="Microsoft.NET.Sdk" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk"
+         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
@@ -14,15 +15,23 @@
         <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageTags>text-to-speech;ai;gemini;speech-synthesis</PackageTags>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
     </PropertyGroup>
     <ItemGroup>
-        <None Include="../README.md" Pack="true" PackagePath="/" />
+        <None Include="../README.md"
+              Pack="true"
+              PackagePath="/" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="ConsoleTableExt" Version="3.3.0" />
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-        <PackageReference Include="NAudio" Version="2.2.1" />
-        <PackageReference Include="Vosk" Version="0.3.38" />
-        <PackageReference Include="YoutubeDLSharp" Version="1.1.1" />
+        <PackageReference Include="ConsoleTableExt"
+                          Version="3.3.0" />
+        <PackageReference Include="Newtonsoft.Json"
+                          Version="13.0.3" />
+        <PackageReference Include="NAudio"
+                          Version="2.2.1" />
+        <PackageReference Include="Vosk"
+                          Version="0.3.38" />
+        <PackageReference Include="YoutubeDLSharp"
+                          Version="1.1.1" />
     </ItemGroup>
 </Project>
